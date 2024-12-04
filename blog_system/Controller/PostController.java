@@ -69,10 +69,8 @@ public class PostController {
 
     //4 End point
     @PutMapping("/update-content/{id}")
-    public ResponseEntity updateContent(@PathVariable Integer id,@RequestBody @Valid String content,Errors errors){
-        if(errors.hasErrors()){
-            return ResponseEntity.status(400).body(errors.getFieldError().getDefaultMessage());
-        }
+    public ResponseEntity updateContent(@PathVariable Integer id,@RequestBody String content){
+
         postService.updateContent(id,content);
         return ResponseEntity.status(200).body(new ApiResponse("post content updated successfully"));
     }
